@@ -1,0 +1,50 @@
+{% include 'base.html' %}
+{% include 'navigation.html' %}
+{% block content %}
+{% if error == "no" %}
+    <script>
+    alert('User Created');
+    window.location = "{% url 'view_patient' %}";
+    </script>
+{% elif error == "yes" %}
+
+    {% comment %} {% if error== "yes" %} {% endcomment %}
+    <script>
+    alert('Invalid Login. Please Try Again');
+    
+    </script>
+{% endif %}
+
+<div class="container">
+    <h2 class="text-center">Add Patient</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Patient Name</label>
+        <input type="text" class="form-control" name="name">
+        
+        <label>Gender</label>
+        <input type="radio" name="gender" value="M">
+        <label for="gender">Male</label>
+        <input type="radio" name="gender" value="F">
+        <label for="gender">Female</label>
+        <br>
+        {% comment %} <label>Gender</label>
+        <input type="radio" value="male">Male
+        <input type="radio" value="female">Female
+        <br> {% endcomment %}
+        
+
+        <label>Mobile</label>
+        <input type="text" class="form-control" name="mobile">
+
+        <label>Address</label>
+        <input type="text" class="form-control" name="address">
+        
+        <input type="submit" value="Create" class="form-control btn btn-primary">
+    </form>
+</div>
+
+
+
+{% endblock content %}
+{% include 'footer.html' %}
